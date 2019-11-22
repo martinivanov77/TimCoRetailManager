@@ -18,8 +18,12 @@ namespace TRMDataManager.App_Start
 
             operation.parameters.Add(new Parameter
             {
-                name= 
-            }
+                name = "Authorization",
+                @in = "header",
+                description = "access token",
+                required = false,
+                type = "string"
+            });
                 
         }
     }

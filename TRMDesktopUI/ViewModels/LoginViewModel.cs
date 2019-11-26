@@ -1,10 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TRMDesktopUI.Helpers;
+using TRMDesktopUI.Library.Api;
 
 namespace TRMDesktopUI.ViewModels
 {
@@ -53,7 +50,6 @@ namespace TRMDesktopUI.ViewModels
                 return output;
             }
         }
-
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -64,7 +60,6 @@ namespace TRMDesktopUI.ViewModels
                 NotifyOfPropertyChange(() => IsErrorVisible);
             }
         }
-
         public bool CanLogIn
         {
             get
@@ -86,6 +81,8 @@ namespace TRMDesktopUI.ViewModels
             {
                 ErrorMessage = "";  //resets error box !
                 var result = await _apiHelper.Authenticate(UserName, Password);
+
+                await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
             }
             catch(Exception ex)
             {

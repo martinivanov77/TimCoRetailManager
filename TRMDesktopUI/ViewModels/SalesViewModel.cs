@@ -9,6 +9,7 @@ namespace TRMDesktopUI.ViewModels
    public class SalesViewModel : Screen
     {
         private BindingList<string> _products;
+        private int _itemQuantity;
 
         public BindingList<string> Products
         {
@@ -19,7 +20,6 @@ namespace TRMDesktopUI.ViewModels
                 NotifyOfPropertyChange(() => Products);
             }
         }
-
         private BindingList<string> _cart;
 
         public BindingList<string> Cart
@@ -28,23 +28,18 @@ namespace TRMDesktopUI.ViewModels
             set
             {
                 _cart = value;
-                NotifyOfPropertyChange(() => ItemQuantity);
+                NotifyOfPropertyChange(() => Cart);
             }
         }
-
-        private string _itemQuantity;
-
-        public string ItemQuantity
+        public int ItemQuantity
         {
             get { return _itemQuantity; }
             set
             {
-                NotifyOfPropertyChange(() => ItemQuantity);
                 _itemQuantity = value;
+                NotifyOfPropertyChange(() => ItemQuantity);
             }
         }
-
-
         public string SubTotal
         {
             //TODO : Replace with calculation
@@ -72,7 +67,6 @@ namespace TRMDesktopUI.ViewModels
                 return output;
             }
         }
-
         public void AddToCart()
         {
 
@@ -88,7 +82,6 @@ namespace TRMDesktopUI.ViewModels
                 return output;
             }
         }
-
         public void RemoveFromCart()
         {
 
@@ -104,12 +97,9 @@ namespace TRMDesktopUI.ViewModels
                 return output;
             }
         }
-
         public void CheckOut()
         {
 
         }
-
-
     }
 }
